@@ -1,0 +1,325 @@
+﻿<Window x:Class="Prototipo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Prototipo"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#00000000"
+        Title="MainWindow" Height="850" Width="1650">
+    
+    
+    
+    <Grid Background="#AA1E1E2F" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <!-- Panel izquierdo -->
+            <ColumnDefinition Width="*"/>
+            <!-- Panel central -->
+            <ColumnDefinition Width="450"/>
+            <!-- Panel derecho -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Botón cerrar -->
+        <Button Content="✖"
+                Width="30" Height="30"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Foreground="White"
+                FontSize="14"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,10,10,0"
+                Click="BtnCerrar_click"
+                Cursor="Hand"
+                Grid.ColumnSpan="3"/>
+
+        <Button Content="▁"
+         Width="30" Height="30"
+         Background="Transparent"
+         BorderBrush="Transparent"
+         Foreground="White"
+         FontSize="14"
+         HorizontalAlignment="Right"
+         VerticalAlignment="Top"
+         Margin="0,4,42,0"
+         Click="BtnPeque_Click"
+         Cursor="Hand" Grid.Column="2"/>
+
+        <StackPanel Orientation="Vertical"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,10,80,0"
+            Grid.ColumnSpan="3">
+
+            <TextBlock x:Name="txtHora"
+               Text="00:00:00"
+               Foreground="White"
+               FontSize="16"
+               FontWeight="Bold"
+               HorizontalAlignment="Right"/>
+
+            <TextBlock x:Name="txtFecha"
+               Text="01/01/2026"
+               Foreground="LightGray"
+               FontSize="12"
+               HorizontalAlignment="Right"/>
+
+        </StackPanel>
+
+        <!-- BLOQUE DE BOTONES SUPERIOR DERECHO -->
+        <Border Grid.Column="1"
+                BorderBrush="#3A4149"
+                BorderThickness="2"
+                Padding="10"
+                Background="#FF282D33"
+                Height="153"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Width="1180" Grid.ColumnSpan="2">
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                <!-- Botón: Estado -->
+                <Button Width="181" Height="80" Background="#FF17376B" BorderBrush="#FF17376B" Cursor="Hand" Click="Estado_Click">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" Width="24" Height="24"/>
+                        <TextBlock Text="Estado" FontFamily="Poppins" FontSize="14" HorizontalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Botón: Alertas -->
+                <Button x:Name="BtnAlertas" Width="181" Height="80" Margin="25,10,10,10" Background="#FF730000" BorderBrush="#FF730000" Cursor="Hand" Click="Alertas_Click">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" Width="24" Height="24"/>
+                        <TextBlock Text="Alertas" FontFamily="Poppins" FontSize="14" HorizontalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Botón: Mantenimiento -->
+                <Button Width="181" Height="80" Margin="25,10,10,10" Background="#FF730973" BorderBrush="#FF730973" Cursor="Hand" Click="Mantenimiento_Click">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" Width="24" Height="24"/>
+                        <TextBlock Text="Mantenimiento" FontFamily="Poppins" FontSize="14" TextAlignment="Center" TextWrapping="Wrap" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Botón: Inventario -->
+                <Button Width="181" Height="80" Margin="25,10,10,10" Background="#FF044804" BorderBrush="#FF044804" Cursor="Hand" Click="Inventario_Click">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/1250/1250683.png" Width="24" Height="24"/>
+                        <TextBlock Text="Inventario" FontFamily="Poppins" FontSize="14" HorizontalAlignment="Center" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <!-- PANEL IZQUIERDO -->
+        <Border Grid.Column="0" Background="#282D33" BorderBrush="#3A4149" BorderThickness="2" Padding="20">
+            <StackPanel>
+                <!-- Logo -->
+                <Image Source="https://cdn-icons-png.flaticon.com/512/1828/1828490.png"
+               Width="100" Height="100" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
+                <!-- Usuario -->
+                <Button x:Name="lblUsuario"
+        Content="Usuario"
+        Click="UsuarioLabel_Click"
+        Background="Transparent"
+        BorderThickness="0"
+        FontSize="16"
+        FontFamily="Poppins"
+        Foreground="White"
+        Cursor="Hand"
+        HorizontalAlignment="Center"
+        Margin="0,0,0,20"/>
+
+
+                <!-- Indicadores -->
+                <ItemsControl>
+                    <ItemsControl.Resources>
+                        <!-- Estilo general para los botones -->
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Padding" Value="8,5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="8" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <!-- Hover -->
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#22FFFFFF"/>
+                                            </Trigger>
+                                            <!-- Click -->
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Background" Value="#33FFFFFF"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ItemsControl.Resources>
+                    <!-- Distribución en columnas -->
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Margin="10"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <!-- Botones -->
+                    <Button Click="BtnVerde_click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Rectangle Width="18" Height="18" Fill="Green" RadiusX="4" RadiusY="4" Margin="0,0,8,0"/>
+                            <TextBlock Text="Estado general del sistema" FontFamily="Poppins" FontSize="14" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="BtnRojo_click" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Rectangle Width="18" Height="18" Fill="Red" RadiusX="4" RadiusY="4" Margin="0,0,8,0"/>
+                            <TextBlock Text="Estado del sistema" FontFamily="Poppins" FontSize="14" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="BtnAmarillo_click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Rectangle Width="18" Height="18" Fill="Yellow" RadiusX="4" RadiusY="4" Margin="0,0,8,0"/>
+                            <TextBlock Text="Uso del CPU (%)" FontFamily="Poppins" FontSize="14" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="BtnNaranja_click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Rectangle Width="18" Height="18" Fill="Orange" RadiusX="4" RadiusY="4" Margin="0,0,8,0"/>
+                            <TextBlock Text="Uso de RAM (%)" FontFamily="Poppins" FontSize="14" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="BtnAzul_click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Rectangle Width="18" Height="18" Fill="Blue" RadiusX="4" RadiusY="4" Margin="0,0,8,0"/>
+                            <TextBlock Text="Espacio de Disco" FontFamily="Poppins" FontSize="14" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="BtnMorado_click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Rectangle Width="18" Height="18" Fill="Purple" RadiusX="4" RadiusY="4" Margin="0,0,8,0"/>
+                            <TextBlock Text="Conectividad de red" FontFamily="Poppins" FontSize="14" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="BtnRo_click">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Rectangle Width="18" Height="18" Fill="DarkRed" RadiusX="4" RadiusY="4" Margin="0,0,8,0"/>
+                            <TextBlock Text="Alertas activas" FontFamily="Poppins" FontSize="14" Foreground="White"/>
+                        </StackPanel>
+                    </Button>
+                </ItemsControl>
+
+            </StackPanel>
+        </Border>
+
+        <!-- PANEL CENTRAL -->
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="ALMACENAMIENTO"
+                       FontWeight="Bold"
+                       FontSize="18"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       FontFamily="Poppins"
+                       Margin="0,0,0,20"/>
+
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="ALMACENAMIENTO" FontSize="14" Foreground="LightGray" FontFamily="Poppins" Margin="0,0,0,5"/>
+                <Image Source="/rp_transparente.png"  Width="327"   Height="323"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- PANEL DERECHO -->
+        <Border Grid.Column="2" Padding="20" VerticalAlignment="Center" Height="349">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <!-- Estilo para los círculos numerados -->
+                    <Style x:Key="CircleStyle" TargetType="Border">
+                        <Setter Property="Width" Value="40"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="CornerRadius" Value="20"/>
+                        <Setter Property="Margin" Value="0,0,10,0"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <!-- Estilo para los contenedores de texto -->
+                    <Style x:Key="TextBoxStyle" TargetType="Border">
+                        <Setter Property="Width" Value="350"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="CornerRadius" Value="6"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <!-- Estilo de texto -->
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Poppins"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                    </Style>
+                </StackPanel.Resources>
+                <!-- Ítem 1 -->
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Border Style="{StaticResource CircleStyle}" Background="#FF0B4F73">
+                        <TextBlock Text="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Style="{StaticResource TextBoxStyle}" Background="#FF0B4F73">
+                        <TextBlock Text="PARTICIONES CON POCO ESPACIO"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Ítem 2 -->
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Border Style="{StaticResource CircleStyle}" Background="#FF8C561C">
+                        <TextBlock Text="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Style="{StaticResource TextBoxStyle}" Background="#FF8C561C">
+                        <TextBlock Text="CARPETA CON MAYOR PESO"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Ítem 3 -->
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Border Style="{StaticResource CircleStyle}" Background="#FFA0433F">
+                        <TextBlock Text="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Style="{StaticResource TextBoxStyle}" Background="#FFA0433F">
+                        <TextBlock Text="ARCHIVOS TEMPORALES "/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Ítem 4 -->
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Border Style="{StaticResource CircleStyle}" Background="#FF163150">
+                        <TextBlock Text="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Style="{StaticResource TextBoxStyle}" Background="#FF163150">
+                        <TextBlock Text="PUNTO DE RESTAURACION"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Ítem 5 -->
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <Border Style="{StaticResource CircleStyle}" Background="#FF2A5154">
+                        <TextBlock Text="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Style="{StaticResource TextBoxStyle}" Background="#FF2A5154">
+                        <TextBlock Text="ESTADO"/>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

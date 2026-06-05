@@ -1,0 +1,150 @@
+﻿<Window x:Class="Prototipo.EsGeSi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Estado General del Sistema"
+        Height="420" Width="720"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#1e1e2e">
+
+    <Border CornerRadius="10" BorderThickness="1" Margin="10">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="Green" Offset="0"/>
+                <GradientStop Color="Orange" Offset="0.5"/>
+                <GradientStop Color="DarkRed" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <!-- CONTENEDOR PRINCIPAL -->
+        <Grid>
+            <!-- Logo -->
+            <Image Source="C:\Users\CODETA01\source\repos\jyp1\Prototipo\logojp.png"
+                   Width="52" Margin="10,-53,0,293"
+                   HorizontalAlignment="Left"/>
+
+            <!-- HEADER -->
+            <Grid VerticalAlignment="Top" Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                
+
+
+                <!-- TÍTULO -->
+                <TextBlock Grid.Column="1" Text="Estado General del Sistema"
+                           FontSize="20" FontWeight="Bold"
+                           Foreground="#b0bafc"
+                           VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="83,0,-17,0"/>
+
+                <!-- BOTÓN MINIMIZAR -->
+                <Button Grid.Column="2" Content="▁" Width="30" Height="30"
+                        Background="Transparent" BorderBrush="Transparent"
+                        Foreground="#b0bafc" FontSize="16"
+                        Margin="0,5,6,0"
+                        Click="BtnPeque_Click"
+                        Cursor="Hand"
+                        ToolTip="Minimizar"/>
+
+                <!-- BOTÓN CERRAR -->
+                <Button Grid.Column="3" Content="✖" Width="30" Height="30"
+                        Background="Transparent" BorderBrush="Transparent"
+                        Foreground="#e84c4c" FontSize="16"
+                        Margin="0,5,0,0"
+                        Click="BtnCerrar_Click"
+                        Cursor="Hand"
+                        ToolTip="Cerrar"/>
+            </Grid>
+
+            <!-- CONTENIDO PRINCIPAL -->
+            <StackPanel Margin="0,60,0,0" VerticalAlignment="Top">
+                <Border Margin="0,0,0,10"/>
+                <Border Margin="0,0,0,10"/>
+                <Border Margin="0,0,0,10"/>
+
+                <!-- SECCIÓN: Información del Sistema -->
+                <Border Background="#2b2d3a" CornerRadius="8" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Información del Sistema" 
+                                   FontWeight="SemiBold" Foreground="#cdd6f4"
+                                   Margin="0,0,0,8"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Nombre del PC:" Foreground="#cdd6f4" FontSize="14" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="PcNameText" Grid.Column="1" Foreground="#b8c0e0" FontSize="14"/>
+
+                            <TextBlock Text="Hora actual:" Grid.Row="1" Foreground="#cdd6f4" FontSize="14" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="HoraActualText" Grid.Row="1" Grid.Column="1" Foreground="#b8c0e0" FontSize="14"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- SECCIÓN: Recursos del Sistema -->
+                <Border Background="#2b2d3a" CornerRadius="8" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Recursos del Sistema" 
+                                   FontWeight="SemiBold" Foreground="#cdd6f4"
+                                   Margin="0,0,0,8"/>
+
+                        <!-- CPU -->
+                        <StackPanel Orientation="Horizontal" Margin="5,3" VerticalAlignment="Center">
+                            <TextBlock Text="CPU:" Width="140" Foreground="#cdd6f4" FontSize="14"/>
+                            <TextBlock x:Name="CpuValueText" Foreground="#a6e22e" FontSize="14" FontWeight="Bold"/>
+                            <ProgressBar x:Name="CpuBar" Height="14" Width="270" Margin="12,0,0,0"
+                                         Maximum="100" Foreground="#a6e22e" Background="#44475a"/>
+                        </StackPanel>
+
+                        <!-- RAM -->
+                        <StackPanel Orientation="Horizontal" Margin="5,3" VerticalAlignment="Center">
+                            <TextBlock Text="RAM:" Width="140" Foreground="#cdd6f4" FontSize="14"/>
+                            <TextBlock x:Name="RamValueText" Foreground="#ff79c6" FontSize="14" FontWeight="Bold"/>
+                            <ProgressBar x:Name="RamBar" Height="14" Width="270" Margin="12,0,0,0"
+                                         Maximum="100" Foreground="#ff79c6" Background="#44475a"/>
+                        </StackPanel>
+
+                        <!-- DISCO -->
+                        <StackPanel Orientation="Horizontal" Margin="5,3" VerticalAlignment="Center">
+                            <TextBlock Text="Disco C:" Width="140" Foreground="#cdd6f4" FontSize="14"/>
+                            <TextBlock x:Name="DiskValueText" Foreground="#8be9fd" FontSize="14" FontWeight="Bold"/>
+                            <ProgressBar x:Name="DiskBar" Height="14" Width="270" Margin="12,0,0,0"
+                                         Maximum="100" Foreground="#8be9fd" Background="#44475a"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- SECCIÓN: Red y Alertas -->
+                <Border Background="#2b2d3a" CornerRadius="8" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Red y Estado del Sistema" 
+                                   FontWeight="SemiBold" Foreground="#cdd6f4"
+                                   Margin="0,0,0,8"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,2">
+                            <TextBlock Text="Red:" Width="140" Foreground="#cdd6f4" FontSize="14"/>
+                            <TextBlock x:Name="NetworkStatusText" Width="100" Foreground="#f1fa8c" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock x:Name="NetworkSpeedText" Foreground="#50fa7b" FontSize="14" FontWeight="SemiBold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="5,2">
+                            <TextBlock Text="Alertas activas:" Width="140" Foreground="#cdd6f4" FontSize="14"/>
+                            <TextBlock x:Name="ActiveAlertsText" Foreground="#ff5555" FontSize="14" FontWeight="Bold"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
